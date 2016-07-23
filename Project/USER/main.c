@@ -12,8 +12,6 @@ u8 NetSta[3];
 u8 Usart_flag = 1;
 u8 SendCnt=0;  //发送注入命令的次数
 u8 nettemp;
-
-u8 MomShip = 0;               //母船的位置，1：左，2：右
 NetState netState;
 NetParam netparam;
 
@@ -48,7 +46,6 @@ int main(void)
 	Encode_Init();      //编码器功能，定时器2，3,4
 	Led_Init();
 	USART1_Config(); //与T81通信
-	Time1_Config();  //串口等待超时处理
 	Key_Init();
 	ReadFlash_param();
 	OSInit();

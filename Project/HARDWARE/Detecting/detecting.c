@@ -99,12 +99,17 @@ void NetDetecting()
 	}	
 }
 
-//插上第一次注入
+/***********************************************************
+ * 函数名: paramSet_task
+ * 描述  ：第一次插上时初始化参数任务
+ * 输入  : 无
+ * 输出  : 无
+ ***********************************************************/
 void paramSet_task(void *pdata)
 {
 	u8 *rxbuf;
 	u8 *txbuf;
-	u8 numbering;
+	u8 numbering; 
 	u8 err,i;
 	while(1)
 	{

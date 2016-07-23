@@ -157,7 +157,14 @@ void USART1_IRQHandler(void)
 	__nop();   	
 	
 }
-//当更改两船间距或网口间距
+
+/************************************************************
+ * 函数名：WriteParam
+ * 描述  ：注入参数
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void WriteParam()
 {
 	paramUpdata();
@@ -334,7 +341,13 @@ void Com1SendData()
 	Usart1_Receive;
 }
 
-//串口发送任务
+/************************************************************
+ * 函数名：usartsend_task
+ * 描述  ：串口发送任务
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void usartsend_task(void *pdata)
 {
 	INT8U err;
@@ -344,6 +357,8 @@ void usartsend_task(void *pdata)
 		if(err==OS_ERR_NONE)
 		{
 			OSSemPend(uart,0,&err);
+			if(tx1buf[1]!=0x51)
+				Postfault();
 			Usart_flag = 0;
 			Com1SendData();
 			

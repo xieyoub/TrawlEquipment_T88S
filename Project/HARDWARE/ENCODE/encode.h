@@ -11,8 +11,8 @@ void EXTI9_5_IRQhandler(void);
 void TIM2_IRQHandler(void);
 void TIM3_IRQHandler(void);
 void Encode1_Enable(u16 Num);
-void Encode2_Enable(u16 Num);
 void Encode3_Enable(u16 Num);
+void Encode2_Enable(u16 Num);
 void DisableEncode(void);
 
 #endif

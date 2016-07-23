@@ -122,11 +122,6 @@ void TIME3_Encode()
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;  //从优先级0级
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQ通道被使能
 	NVIC_Init(&NVIC_InitStructure);  //根据NVIC_InitStruct中指定的参数初始化外设NVIC寄存器 
-
-	//TIM_ITConfig(TIM3, TIM_IT_CC1, ENABLE);//
-	//Reset counter
-
-	//TIM_Cmd(TIM3, ENABLE);   //启动TIM3定时器
 }
 
 /************************************************************
@@ -160,7 +155,6 @@ void TIM2_IRQHandler(void)
 			NixieTubValue[2] = 0;
 			TIM2->CNT = 0;
 		}
-		//NixieTub_twoship(NixieTubValue[0]);
 		Nixie.valueChange = 1;
 		TIM_ClearITPendingBit(TIM2,TIM_IT_CC1);
 	}
@@ -196,7 +190,6 @@ void TIM3_IRQHandler(void)
 			NixieTubValue[1] = 0;
 			TIM3->CNT = 0;
 		}
-		//NixieTub_twoship(NixieTubValue[1]);
 		Nixie.valueChange = 1;
 		TIM_ClearITPendingBit(TIM3,TIM_IT_CC1);
 	}
@@ -232,7 +225,6 @@ void TIM4_IRQHandler(void)
 			NixieTubValue[0] = 0;
 			TIM4->CNT = 0;
 		}
-		//NixieTub_twoship(NixieTubValue[2]);
 		Nixie.valueChange = 1;
 		TIM_ClearITPendingBit(TIM4,TIM_IT_CC1);
 	}
@@ -257,7 +249,13 @@ void Encode_Init()
 	TIME4_Encode();
 }
 
-//twoship
+/************************************************************
+ * 函数名：Encode1_Enable
+ * 描述  ：启用第一个编码器
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void Encode1_Enable(u16 Num)
 {
 		TIM_Cmd(TIM4,ENABLE);
@@ -265,24 +263,41 @@ void Encode1_Enable(u16 Num)
 		TIM_ITConfig(TIM4, TIM_IT_CC1, ENABLE);		
 }
 
-//netparam.z
+/************************************************************
+ * 函数名：Encode2_Enable
+ * 描述  ：启用第二个编码器
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void Encode2_Enable(u16 Num)
-{
-		TIM_Cmd(TIM3,ENABLE);
-		TIM3->CNT = (Num/20)*4;
-		TIM_ITConfig(TIM3, TIM_IT_CC1, ENABLE);		
-}
-
-
-//四位数码管启用设置
-void Encode3_Enable(u16 Num)
 {
 		TIM_Cmd(TIM2,ENABLE);  
 		TIM2->CNT = (Num/5)*4;
 		TIM_ITConfig(TIM2, TIM_IT_CC1, ENABLE);
 }
 
-//禁用编码器
+/************************************************************
+ * 函数名：Encode3_Enable
+ * 描述  ：启用第三个编码器
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
+void Encode3_Enable(u16 Num)
+{
+		TIM_Cmd(TIM3,ENABLE);
+		TIM3->CNT = (Num/20)*4;
+		TIM_ITConfig(TIM3, TIM_IT_CC1, ENABLE);		
+}
+
+/************************************************************
+ * 函数名：DisableEncode
+ * 描述  ：禁用编码器
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void DisableEncode()
 {
 		TIM_Cmd(TIM2,DISABLE);

@@ -13,7 +13,13 @@ void Uart_SendData(USART_TypeDef* USARTx,uint16_t Data)
    while (!(USARTx->SR & USART_FLAG_TXE));
 }
 
-//LED全部熄灭
+/************************************************************
+ * 函数名：AllLedOff
+ * 描述  ：熄灭全部的二极管灯
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：
+ ************************************************************/
 void AllLedOff(void)
 {
 	GPIO_SetBits(GPIOA,GPIO_Pin_11);
@@ -373,7 +379,13 @@ void NixieTube_AllOff(void)
 	delay_ms(5);
 }
 
-//数码管显示
+/************************************************************
+ * 函数名：NixieTubeDisplay
+ * 描述  ：数码管显示
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void NixieTubeDisplay()
 {
 	if(State)//处于写码状态
@@ -408,8 +420,8 @@ void NixieTubeDisplay()
 									
 									//启用编码器
 									Encode1_Enable(netparam.dis_twoship);
-									Encode2_Enable(netparam.left_z);
-									Encode3_Enable(netparam.dis_twonet);
+									Encode3_Enable(netparam.left_z);
+									Encode2_Enable(netparam.dis_twonet);
 								}
 								break;
 			
@@ -436,7 +448,7 @@ void NixieTubeDisplay()
 									NixieTub_four(netparam.tail_z);
 									
 									//启用编码器
-								 Encode2_Enable(netparam.tail_z);
+								 Encode3_Enable(netparam.tail_z);
 									Encode1_Enable(netparam.dis_twoship);
 								}
 								break;
@@ -473,21 +485,27 @@ void NixieTubeDisplay()
 									
 									//启用编码器
 									Encode1_Enable(netparam.dis_twoship);
-									Encode2_Enable(netparam.right_z);
-									Encode3_Enable(netparam.dis_twonet);
+									Encode3_Enable(netparam.right_z);
+									Encode2_Enable(netparam.dis_twonet);
 								}
 								break;
 			default:
 								break;
 		}
 	}
-	else //非写码状态下 //
+	else //非写码状态下
 	{
 		NixieTubeLowLight();
 	}
 }
 
-//更新灯状态
+/************************************************************
+ * 函数名：updateLedState
+ * 描述  ：更新灯状态
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void updateLedState()
 {
 	AllLedOff();
@@ -566,7 +584,13 @@ void LedState(void)
 	}
 }
 
-//数码管显示任务
+/************************************************************
+ * 函数名：NixieTube_task
+ * 描述  ：数码管显示任务
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void NixieTube_task(void *pdata)
 {
 	while(1)

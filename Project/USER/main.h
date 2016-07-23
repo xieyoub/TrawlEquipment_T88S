@@ -24,7 +24,6 @@ extern u8 UsartUsingTime;
 extern u8 UsartAskCnt;
 extern u8 faultCnt[3];
 extern u8 NetSta[3];
-extern u8 MomShip;
 extern u8 Usart_flag;
 extern u8 SendCnt;
 extern u8 nettemp;

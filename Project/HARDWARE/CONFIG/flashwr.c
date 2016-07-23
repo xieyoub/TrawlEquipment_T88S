@@ -24,6 +24,13 @@ vu32 NbrOfPage = 0x00; //要擦除的页面数量
 volatile FLASH_Status FLASHStatus;
 volatile TestStatus MemoryProgramStatus;
 
+/************************************************************
+ * 函数名：WriteFlash_param
+ * 描述  ：将参数写到Flash中
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void WriteFlash_param()
 {
 	FLASHStatus = FLASH_COMPLETE;
@@ -60,6 +67,14 @@ void WriteFlash_param()
 	FLASHStatus = FLASH_ProgramWord(FlashAddress,netparam.right_z);
 }
 
+
+/************************************************************
+ * 函数名：ReadFlash_param
+ * 描述  ：从Flash中读取参数
+ * 输入  ：无
+ * 输出  ：无
+ * 调用  ：无
+ ************************************************************/
 void ReadFlash_param()
 {
 	FlashAddress = StartAddr[0];
@@ -104,4 +119,5 @@ void ReadFlash_param()
 	}
 	NixieTubValue[0] = netparam.dis_twoship;
 	NixieTubValue[2] = netparam.dis_twonet;
+	WriteFlash_param();
 }
