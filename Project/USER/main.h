@@ -40,6 +40,7 @@ struct _NetParam
 	u16 right_x,right_y,right_z;//右舷参数
 };
 extern NetParam netparam;
+extern OS_Q_DATA q_data;
 
 /////////////////////////UCOSII任务设置///////////////////////////////////
 //START 任务

@@ -133,9 +133,23 @@ void paramSet_task(void *pdata)
 				rxbuf = OSMboxPend(msg_receive,200,&err);
 				if(err==OS_ERR_NONE)
 				{
-					if(rxbuf[1]==0x18)//收到关闭串口命令说明注入成功
+					if(rxbuf[1]==0x31)//注入成功
 					{
 						SendCnt = 0;
+						err=OSQQuery(msg_write,&q_data);//查询队列中是否有消息
+						if(err==OS_ERR_NONE)
+						{
+							if(q_data.OSNMsgs==0)
+							{
+								if(State==1)
+								{
+									State = 0; //退出写码状态
+									DisableEncode();
+									netState.Net_Connet = 0;
+								}
+								Nixie.Display = 1;
+							}
+						}
 						switch(numbering)
 						{
 							case 1:
@@ -184,8 +198,6 @@ void paramSet_task(void *pdata)
 			OSTaskResume(KEY_TASK_PRIO);
 			OSTaskResume(USARTSEND_TASK_PRIO);
 			OSTaskResume(HANDSHAKE_TASK_PRIO);
-			
-			Nixie.Display = 1;
 		}
 	}
 }

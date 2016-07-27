@@ -12,6 +12,7 @@ u8 NetSta[3];
 u8 Usart_flag = 1;
 u8 SendCnt=0;  //发送注入命令的次数
 u8 nettemp;
+OS_Q_DATA q_data; 
 NetState netState;
 NetParam netparam;
 

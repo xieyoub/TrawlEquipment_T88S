@@ -4,6 +4,4 @@
 
 void paramClct(void);
 void paramUpdata(void);
-extern u16 x,y,z;
-
 #endif

@@ -17,6 +17,10 @@ void WriteParam(void);
 
 extern u8 rx1buf[UART_RX1_LEN];  //串口1接收缓存
 extern u8 tx1buf[UART_RX1_LEN]; 	   //串口1发送缓冲
+extern u8 WriteLeftBuf[18];
+extern u8 WriteTailBuf[18];
+extern u8 WriteRightBuf[18];
+extern u8 ReadBuf[18];
 
 #endif
 

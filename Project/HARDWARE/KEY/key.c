@@ -76,7 +76,6 @@ void key_task(void *pdata)
 														netparam.momship = 2;
 													else if(netparam.momship == 2)
 														netparam.momship = 1;
-													paramUpdata();
 													WriteParam();
 												}
 											}
@@ -85,10 +84,35 @@ void key_task(void *pdata)
 						case 2://确定
 							    if(Usart_flag==1)
 											{
-												if(State == 1)   //处于写码状态
+												if(State == 1)//处于写码状态
 												{
 													SilentTime=0;
-													OffSetWrite();
+													if(netparam.dis_twoship!=NixieTubValue[0]|netparam.dis_twonet!=NixieTubValue[2])//判断是否更改了两船间距和网口间距
+													{													
+														netparam.dis_twoship = NixieTubValue[0];
+														switch(netState.Net_Connet)
+														{
+															case 1:
+																				netparam.left_z = NixieTubValue[1];
+																				break;
+															
+															case 2:
+																			netparam.tail_z = NixieTubValue[1];
+																			break;
+															
+															case 3:
+																			netparam.right_z = NixieTubValue[1];
+																			break;
+															default:
+																			break;
+														}
+														netparam.dis_twonet = NixieTubValue[2];
+														WriteParam();
+													}
+													else
+													{
+														OffSetWrite();
+													}
 												}
 											}
 											break;
@@ -96,79 +120,45 @@ void key_task(void *pdata)
 						case 3: //网尾
 							    if(Usart_flag==1)
 											{
-												if(netState.Net_Insert[1]!=0)//示位标已插入,包括故障的
+												if(netState.Net_Insert[1]==1)//插入
 												{
-													if(State) //正处于写码状态
+													if(netState.Net_Connet!=2)//屏蔽再次按此按键
 													{
-														if(netState.Net_Connet != 2)//屏蔽再次按此按键
-														{
-															if(netState.Net_Insert[1]==1) //选择的该网位仪状态为正常
-															{
-																netState.Net_Sel = 2;
-																CloseSerial();
-															}
-															else //选择的该网位仪为故障的网位仪
-															{
-															netState.Net_Sel = 2;
-															OpenSerial();
-															netState.fault = 1;	
-															}
-														}
+														SilentTime=0;
+														netState.Net_Connet = 2;
+														State = 1;
+														NixieTubValue[0] = netparam.dis_twoship;
+														NixieTubValue[1] = netparam.tail_z;
+														NixieTubValue[2] = netparam.dis_twonet;
+														Nixie.Display = 1;
 													}
-													else//非写码状态
-													{
-														if(netState.Net_Insert[1]==1)//该网位仪正常
-														{
-															netState.Net_Sel = 2;
-															OpenSerial();
-														}
-														else//该网位仪故障
-														{
-															netState.Net_Sel = 2;
-															OpenSerial();
-															netState.fault = 1;					
-														}
-													}
-												}		
+												}
+												else if(netState.Net_Insert[1]==2)//故障
+												{
+													
+												}
 											}												
 											break;						
 											
 						case 4://左舷
 											if(Usart_flag==1)
 											{
-												if(netState.Net_Insert[0]!=0)//示位标已插入,包括故障的
+												if(netState.Net_Insert[0]==1)//插入
 												{
-													if(State) //正处于写码状态
+													if(netState.Net_Connet!=1)//屏蔽再次按此按键
 													{
-														if(netState.Net_Connet != 1)//屏蔽再次选中此按键
-														{
-															if(netState.Net_Insert[0]==1) //选择的该网位仪状态为正常
-															{
-																netState.Net_Sel = 1;
-																CloseSerial();
-															}
-															else //选择的该网位仪为故障的网位仪
-															{
-															netState.Net_Sel = 1;
-															OpenSerial();
-															netState.fault = 1;	
-															}
-														}
+														SilentTime=0;
+														netState.Net_Connet = 1;
+														State = 1;
+														NixieTubValue[0] = netparam.dis_twoship;
+														NixieTubValue[1] = netparam.left_z;
+														NixieTubValue[2] = netparam.dis_twonet;
+														Nixie.Display = 1;
 													}
-													else//非写码状态
-													{
-														if(netState.Net_Insert[0]==1)//该网位仪正常
-														{
-															netState.Net_Sel = 1;
-															OpenSerial();
-														}
-														else//该网位仪故障
-														{
-															netState.Net_Sel = 1;
-															OpenSerial();
-															netState.fault = 1;					
-														}
-													}
+												}
+												else if(netState.Net_Insert[0]==2)//故障
+												{
+													
 												}
 											}
 											break;
@@ -176,39 +166,22 @@ void key_task(void *pdata)
 						case 5://右舷
 							    if(Usart_flag==1)
 											{
-												if(netState.Net_Insert[2]!=0)//示位标已插入,包括故障的
+												if(netState.Net_Insert[2]==1)//插入
 												{
-													if(State)//正处于写码状态
+													if(netState.Net_Connet!=3)//屏蔽再次按此按键
 													{
-														if(	netState.Net_Connet != 3)//屏蔽再次选中此按键
-														{
-															if(netState.Net_Insert[2]==1) //选择的该网位仪状态为正常
-															{
-																netState.Net_Sel = 3;
-																CloseSerial();
-															}
-															else //选择的该网位仪为故障的网位仪
-															{
-															netState.Net_Sel = 3;
-															OpenSerial();
-															netState.fault = 1;	
-															}
-														}
+														SilentTime=0;
+														netState.Net_Connet = 3;
+														State = 1;
+														NixieTubValue[0] = netparam.dis_twoship;
+														NixieTubValue[1] = netparam.right_z;
+														NixieTubValue[2] = netparam.dis_twonet;
+														Nixie.Display = 1;
 													}
-													else //非写码状态
-													{
-														if(netState.Net_Insert[2]==1)//该网位仪正常
-														{
-															netState.Net_Sel = 3;
-															OpenSerial();
-														}
-														else//该网位仪故障
-														{
-															netState.Net_Sel = 3;
-															OpenSerial();
-															netState.fault = 1;					
-														}
-													}
+												}
+												else if(netState.Net_Insert[2]==2)//故障
+												{
+													
 												}
 											}
 											break;

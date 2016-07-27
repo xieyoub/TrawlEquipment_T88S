@@ -8,6 +8,11 @@ u8 rx1buf[UART_RX1_LEN];  //´®¿Ú1½ÓÊÕ»º´æ 0:Ö¡Í· 0x24; 1: ÃüÁî(0x01:²å°Î, 0x31:×
 u8 tx1buf[UART_RX1_LEN]; //´®¿Ú1·¢ËÍ»º³å 0:Ö¡Í· 0x24; 1: ÃüÁî(0x01:²å°Î,  0x31:×¢Èë£¬0x32¶ÁÈ¡);\
                       2~3:ºó·½Æ«ÖÃÖµ; 4:×óÓÒÏÏÅĞ¶Ï(0:×óÏÏ,1:ÓÒÏÏ); 5~6: ×óÓÒÏÏÆ«ÖÃÖµ;\
 																						7: Ñ¡ÔñÒªĞ´ÂëµÄÊ¾Î»±ê(1:ÍøÎ²,2:×óÏÏ,3:ÓÒÏÏ)
+														
+u8 WriteLeftBuf[18];
+u8 WriteTailBuf[18];
+u8 WriteRightBuf[18];
+u8 ReadBuf[18];
 
  /***********************************************************
  * º¯ÊıÃû: USART1_ModeInit
@@ -148,6 +153,8 @@ void USART1_IRQHandler(void)
 		if(crcdata == scrData)
 		{
 			GetCom1Data();
+			if(rx1buf[1]!=0x51)
+				Pendfault();
 			OSSemPost(uart);
 		}
 		
@@ -207,106 +214,22 @@ void GetCom1Data(void)
 								}
 								break;
 			
-			case 0x17: //´ò¿ª´®¿Ú
-								{
-									if(netState.fault)//Ñ¡ÔñµÄÎª¹ÊÕÏÍøÎ»ÒÇ
-									{
-											CloseSerial();
-											netState.fault = 0;
-									}
-									else
-									{
-										State = 1; //½øÈëĞ´Âë×´Ì¬
-										SilentTime = 0;
-										netState.Net_Connet = netState.Net_Sel;
-										netState.Net_Sel = 0;						
-										NixieTubValue[0] = netparam.dis_twoship;
-										NixieTubValue[2] = netparam.dis_twonet;;
-										//ÊıÂë¹Ü¸³Öµ
-										switch (netState.Net_Connet)
-										{
-											case 1://×óÏÏÍøÎ»ÒÇ
-																{
-																	NixieTubValue[1] = netparam.left_z;
-																}
-																break;
-																
-											case 2:
-																{
-																	NixieTubValue[1] = netparam.tail_z;
-																}
-																break;
-																
-											case 3:
-																{
-																	NixieTubValue[1] = netparam.right_z;
-																}
-																break;
-										}
-										Nixie.Display = 1;										
-									}
-								}
-				    break;
-			
-			case 0x18: //¹Ø±Õ´®¿Ú
-								{
-									//²åÉÏÊ±×¢Èë³É¹¦
-									if(SendCnt!=0)
-									{
-										OSMboxPost(msg_receive,(void*)rx1buf);
-										OSMboxPend(uart,1,&err);
-									}
-									else
-									{
-										State = 0; //ÍË³öĞ´Âë×´Ì¬
-										DisableEncode();
-										Nixie.Display = 1;
-										netState.Net_Connet = 0;
-										
-									}
-									
-									if(netState.Net_Sel) //´ÓÒ»¸öÍøÎ»ÒÇµÄĞ´Âë×´Ì¬Ìøµ½ÁíÍâÒ»¸ö
-									{
-										OpenSerial();
-									}
-									else
-									{
-										if(netparam.dis_twoship!=NixieTubValue[0]|netparam.dis_twonet!=NixieTubValue[2])//ÅĞ¶ÏÊÇ·ñ¸ü¸ÄÁËÁ½´¬¼ä¾àºÍÍø¿Ú¼ä¾à
-										{
-											netparam.dis_twoship = NixieTubValue[0];
-											netparam.dis_twonet = NixieTubValue[2];
-											WriteParam();
-										}
-									}
-								}
-								break;
-			
 			case 0x31: //×¢Èë³É¹¦
 			    {
-								switch(netState.Net_Connet)
+								if(SendCnt==0)
 								{
-									case 1:
-										     netparam.left_x = x;
-									      netparam.left_y = y;
-									      netparam.left_z = z;
-										     break;
-									
-									case 2:
-									      netparam.tail_x = x;
-									      netparam.tail_y = y;
-									      netparam.tail_z = z;
-															break;
-									
-									case 3:
-										     netparam.right_x = x;
-									      netparam.right_y = y;
-									      netparam.right_z = z;
-															break;
+									State = 0; //ÍË³öĞ´Âë×´Ì¬
+									DisableEncode();
+									Nixie.Display = 1;
+									netState.Net_Connet = 0;
 								}
-								//±£´æ²ÎÊı
-								WriteFlash_param();
-								CloseSerial();
-			    }
+								else //²åÉÏÊ±×¢Èë²ÎÊıÓ¦´ğ
+								{
+									OSMboxPost(msg_receive,(void*)rx1buf);
+									OSMboxPend(uart,1,&err);
+								}
+								
+							}
 				   break;
 			
 			default:
@@ -351,20 +274,24 @@ void Com1SendData()
 void usartsend_task(void *pdata)
 {
 	INT8U err;
+	u8 *txbuf,i;
 	while(1)
 	{
-		OSQPend(q_msg,0,&err);
+		txbuf = OSQPend(q_msg,0,&err);
+		for(i=0;i<18;i++)
+			tx1buf[i] = txbuf[i];
 		if(err==OS_ERR_NONE)
 		{
 			OSSemPend(uart,0,&err);
 			if(tx1buf[1]!=0x51)
 				Postfault();
 			Usart_flag = 0;
+			
 			Com1SendData();
 			
-			OSSemPend(uart,200,&err);
+			OSSemPend(uart,200,&err);//µÈ´ı1s
 			if(err==OS_ERR_NONE)
-			{	
+			{
 				Usart_flag = 1;
 				OSSemPost(uart);
 			}

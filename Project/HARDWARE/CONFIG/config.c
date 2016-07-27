@@ -16,10 +16,6 @@ void OffSetInit()
 	u8 i;
 	tx1buf[0] = 0x24;
 	tx1buf[1] = 0x31;
-	if(netparam.momship==1)
-		tx1buf[4] = 1;
-	else if(netparam.momship==2)
-		tx1buf[4] = 0;
 	
 	switch (nettemp)
 	{
@@ -27,12 +23,22 @@ void OffSetInit()
 							{
 								tx1buf[2] = netparam.left_y>>8;
 								tx1buf[3] = netparam.left_y;
+								if(netparam.momship==1)
+								{
+									if(netparam.dis_twoship>netparam.dis_twonet)
+										tx1buf[4] = 1;
+									else
+										tx1buf[4] = 0;
+								}
+								else if(netparam.momship==2)
+								{
+									tx1buf[4] = 0;
+								}
 								tx1buf[5] = netparam.left_x>>8;
 								tx1buf[6] = netparam.left_x;
 								tx1buf[7] = 0x01;
-								tx1buf[8] = 1; //第一次注入
 								for(i=0;i<18;i++)
-									netbuf[0][i] = tx1buf[i];
+										netbuf[0][i] = tx1buf[i];
 								OSQPost(msg_write,(void*)netbuf[0]);
 							}
 							break;
@@ -41,10 +47,14 @@ void OffSetInit()
 							{
 								tx1buf[2] = netparam.tail_y>>8;
 								tx1buf[3] = netparam.tail_y;
+								if(netparam.momship==1)
+									tx1buf[4] = 1;
+								else
+									tx1buf[4] = 0;
+								
 								tx1buf[5] = netparam.tail_x>>8;
 								tx1buf[6] = netparam.tail_x;
 								tx1buf[7] = 0x02;
-								tx1buf[8] = 1; //第一次注入
 								for(i=0;i<18;i++)
 									netbuf[1][i] = tx1buf[i];
 								OSQPost(msg_write,(void*)netbuf[1]);	
@@ -55,10 +65,20 @@ void OffSetInit()
 							{
 								tx1buf[2] = netparam.right_y>>8;
 								tx1buf[3] = netparam.right_y;
+								if(netparam.momship==1)
+								{
+									tx1buf[4] = 1;
+								}
+								else
+								{
+									if(netparam.dis_twoship>netparam.dis_twonet)
+										tx1buf[4] = 0;
+									else
+										tx1buf[4] = 1;
+								}
 								tx1buf[5] = netparam.right_x>>8;
 								tx1buf[6] = netparam.right_x;
 								tx1buf[7] = 0x03;
-								tx1buf[8] = 1; //第一次注入
 								for(i=0;i<18;i++)
 									netbuf[2][i] = tx1buf[i];
 								OSQPost(msg_write,(void*)netbuf[2]);
@@ -78,20 +98,11 @@ void OffSetInit()
  ************************************************************/
 void OffSetWrite()
 {
-	u8 i;
 	tx1buf[0] = 0x24;
 	tx1buf[1] = 0x31;
-	paramClct();
-	
-	if(netparam.momship == 1)
-		tx1buf[4] = 1;
-	else if(netparam.momship == 2)
-		tx1buf[4] = 0;
-	
 	tx1buf[7] = netState.Net_Connet;
-	for(i=8;i<18;i++)
-	 tx1buf[i] = 0;
-	OSQPost(q_msg,(void*)tx1buf);
+	paramClct();//参数计算
+	WriteFlash_param();
 }
 
 
@@ -331,7 +342,10 @@ void tmr1_callback(OS_TMR *ptmr,void *p_arg)
 	SilentTime++;
 	if(SilentTime>300 && State==1)
 	{
-		CloseSerial();
+		State = 0; //退出写码状态
+		DisableEncode();
+		netState.Net_Connet = 0;
+		Nixie.Display=1;
 	}
 }
 
@@ -372,7 +386,6 @@ void handshake_task(void *pdata)
 			}
 			else //未收到回复
 			{
-				Usart_flag = 1;
 				if(UsartAskCnt<=5)
 					UsartAskCnt++;
 				
