@@ -136,17 +136,20 @@ void paramSet_task(void *pdata)
 					if(rxbuf[1]==0x31)//注入成功
 					{
 						SendCnt = 0;
+						if(netState.Net_Connet==numbering)
+						{
+							if(State==1)
+							{
+								State = 0; //退出写码状态
+								DisableEncode();
+								netState.Net_Connet = 0;
+							}
+						}
 						err=OSQQuery(msg_write,&q_data);//查询队列中是否有消息
 						if(err==OS_ERR_NONE)
 						{
 							if(q_data.OSNMsgs==0)
 							{
-								if(State==1)
-								{
-									State = 0; //退出写码状态
-									DisableEncode();
-									netState.Net_Connet = 0;
-								}
 								Nixie.Display = 1;
 							}
 						}

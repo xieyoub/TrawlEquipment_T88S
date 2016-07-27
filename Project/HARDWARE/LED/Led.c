@@ -593,13 +593,16 @@ void LedState(void)
  ************************************************************/
 void NixieTube_task(void *pdata)
 {
+	OS_CPU_SR cpu_sr=0;
 	while(1)
 	{
 		delay_ms(50);
 		if(Nixie.Display)
 		{
 			Nixie.Display = 0;
+			//OS_ENTER_CRITICAL();	//进入临界区(无法被中断打断) 			
 			NixieTubeDisplay();
+			//OS_EXIT_CRITICAL();				//退出临界区(可以被中断打断)
 			updateLedState();
 		}
 		

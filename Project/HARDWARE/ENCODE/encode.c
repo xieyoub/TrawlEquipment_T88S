@@ -127,7 +127,6 @@ void TIME3_Encode()
 /************************************************************
  * 函数名：TIM2_IRQHandler
  * 描述  ：定时器2中断
-           调节两个三位数码管
  * 输入  ：无
  * 输出  ：无
  * 调用  ：无
@@ -150,11 +149,18 @@ void TIM2_IRQHandler(void)
 			TIM2->CNT = 480;
 		}
 		
-		if(NixieTubValue[2] >1000) //最小0
+		if(NixieTubValue[2] >1000|NixieTubValue[2]==0) //最小5
 		{
-			NixieTubValue[2] = 0;
-			TIM2->CNT = 0;
+			NixieTubValue[2] = 5;
+			TIM2->CNT = 4;
 		}
+		
+		if(NixieTubValue[2]<=(NixieTubValue[0]-NixieTubValue[1]*2))
+		{
+			NixieTubValue[2]+=5;
+			TIM4->CNT+=4;
+		}
+
 		Nixie.valueChange = 1;
 		TIM_ClearITPendingBit(TIM2,TIM_IT_CC1);
 	}
@@ -163,7 +169,6 @@ void TIM2_IRQHandler(void)
 /************************************************************
  * 函数名：TIM3_IRQHandler
  * 描述  ：定时器3中断
-           调节一个四位数码管
  * 输入  ：无
  * 输出  ：无
  * 调用  ：无
@@ -185,10 +190,30 @@ void TIM3_IRQHandler(void)
 			TIM3->CNT = 600;
 		}
 		
-		if(NixieTubValue[1] >4500) //最小0
+		if(NixieTubValue[1] >4500|NixieTubValue[1]==0) //最小20
 		{
-			NixieTubValue[1] = 0;
-			TIM3->CNT = 0;
+			NixieTubValue[1] = 20;
+			TIM3->CNT = 4;
+		}
+		
+		switch(netState.Net_Connet)
+		{
+			case 1:
+			case 3:
+				    if(2*NixieTubValue[1]<=abs(NixieTubValue[0]-NixieTubValue[2]))
+								{
+									NixieTubValue[1]+=20;
+         TIM3->CNT+=4;									
+								}
+								break;
+								
+			case 2:
+				    if(NixieTubValue[1]<=NixieTubValue[0]/2)
+								{
+									NixieTubValue[1]+=20;
+									TIM3->CNT+=4;
+								}
+				    break;
 		}
 		Nixie.valueChange = 1;
 		TIM_ClearITPendingBit(TIM3,TIM_IT_CC1);
@@ -220,10 +245,29 @@ void TIM4_IRQHandler(void)
 			TIM4->CNT = 480;
 		}
 		
-		if(NixieTubValue[0] >1000) //最小0
+		if(NixieTubValue[0] >1000|NixieTubValue[0]==0) //最小5
 		{
-			NixieTubValue[0] = 0;
-			TIM4->CNT = 0;
+			NixieTubValue[0] = 5;
+			TIM4->CNT = 4;
+		}
+		
+		switch(netState.Net_Connet)
+		{
+			case 1:
+			case 3:
+				if(NixieTubValue[0]>=NixieTubValue[1]*2+NixieTubValue[2])
+				{
+					NixieTubValue[0]-=5;
+					TIM4->CNT-=4;
+				}
+				break;
+			case 2:
+				if(NixieTubValue[0]>=2*NixieTubValue[1])
+				{
+					NixieTubValue[0]-=5;
+					TIM4->CNT-=4;
+				}
+				break;
 		}
 		Nixie.valueChange = 1;
 		TIM_ClearITPendingBit(TIM4,TIM_IT_CC1);

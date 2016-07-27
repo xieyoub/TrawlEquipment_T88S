@@ -1,6 +1,6 @@
 Dependencies for Project 'T88', Target 'T88': (DO NOT MODIFY !)
-F (.\main.c)(0x57973B01)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
-I (main.h)(0x5796ECFC)
+F (.\main.c)(0x5798A847)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+I (main.h)(0x5798A57C)
 I (stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -19,7 +19,7 @@ I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\SYSTEM\delay\delay.h)(0x56DE3091)
 I (..\SYSTEM\sys\sys.h)(0x5768B9AE)
 I (..\HARDWARE\LED\Led.h)(0x5790CA63)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\HARDWARE\ENCODE\encode.h)(0x5792F03F)
 I (..\HARDWARE\KEY\key.h)(0x578DF82E)
 I (..\HARDWARE\usart3\usart.h)(0x5795E4E5)
@@ -70,9 +70,9 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_rcc.h)(0x570F487B)
 I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x56F4AC4A)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x57105916)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
-F (..\HARDWARE\LED\Led.c)(0x57933420)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
+F (..\HARDWARE\LED\Led.c)(0x5798A8A3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
 I (..\HARDWARE\LED\Led.h)(0x5790CA63)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -106,9 +106,9 @@ I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7C554)
 I (..\UCOSII\CORE\ucos_ii.h)(0x5796E8F2)
 I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
-F (..\HARDWARE\ENCODE\encode.c)(0x57970D59)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\encode.o --omf_browse ..\obj\encode.crf --depend ..\obj\encode.d)
+F (..\HARDWARE\ENCODE\encode.c)(0x579838F3)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\encode.o --omf_browse ..\obj\encode.crf --depend ..\obj\encode.d)
 I (..\HARDWARE\ENCODE\encode.h)(0x5792F03F)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -142,9 +142,9 @@ I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7C554)
 I (..\UCOSII\CORE\ucos_ii.h)(0x5796E8F2)
 I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
-F (..\HARDWARE\KEY\key.c)(0x57975411)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
+F (..\HARDWARE\KEY\key.c)(0x5798A3C9)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d)
 I (..\HARDWARE\KEY\key.h)(0x578DF82E)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -178,7 +178,7 @@ I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7C554)
 I (..\UCOSII\CORE\ucos_ii.h)(0x5796E8F2)
 I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
-F (..\HARDWARE\usart3\usart.c)(0x579815A1)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+F (..\HARDWARE\usart3\usart.c)(0x5798A83B)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
 I (..\SYSTEM\sys\sys.h)(0x5768B9AE)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -195,7 +195,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x56F4AC4A)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x57105916)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\HARDWARE\LED\Led.h)(0x5790CA63)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\SYSTEM\delay\delay.h)(0x56DE3091)
 I (..\HARDWARE\ENCODE\encode.h)(0x5792F03F)
 I (..\HARDWARE\KEY\key.h)(0x578DF82E)
@@ -216,7 +216,7 @@ I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
 F (..\HARDWARE\CONFIG\config.c)(0x57981724)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\config.o --omf_browse ..\obj\config.crf --depend ..\obj\config.d)
 I (..\HARDWARE\CONFIG\config.h)(0x57933755)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -251,7 +251,7 @@ I (..\UCOSII\CORE\ucos_ii.h)(0x5796E8F2)
 I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
 F (..\HARDWARE\CONFIG\flashwr.c)(0x5796E3AA)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\flashwr.o --omf_browse ..\obj\flashwr.crf --depend ..\obj\flashwr.d)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -286,9 +286,9 @@ I (D:\Keil\ARM\ARMCC\include\stdarg.h)(0x51C7C554)
 I (..\UCOSII\CORE\ucos_ii.h)(0x5796E8F2)
 I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
-F (..\HARDWARE\Detecting\detecting.c)(0x5796EDC7)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\detecting.o --omf_browse ..\obj\detecting.crf --depend ..\obj\detecting.d)
+F (..\HARDWARE\Detecting\detecting.c)(0x5798A289)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\detecting.o --omf_browse ..\obj\detecting.crf --depend ..\obj\detecting.d)
 I (..\HARDWARE\Detecting\detecting.h)(0x578F44A8)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -324,7 +324,7 @@ I (..\UCOSII\CONFIG\os_cfg.h)(0x576A333C)
 I (..\UCOSII\PORT\os_cpu.h)(0x56FB88C9)
 F (..\HARDWARE\Param\updataParam.c)(0x57981843)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\USER -I..\CORE -I..\STM32F10x_FWLib\inc -I..\SYSTEM\delay -I..\SYSTEM\sys -I..\HARDWARE\LED -I..\HARDWARE\ENCODE -I..\HARDWARE\KEY -I..\HARDWARE\usart3 -I..\HARDWARE\CONFIG -I..\UCOSII\CONFIG -I..\UCOSII\CORE -I..\UCOSII\PORT -I..\HARDWARE\Detecting -I..\HARDWARE\Param-I D:\Keil\ARM\RV31\INC-I D:\Keil\ARM\CMSIS\Include-I D:\Keil\ARM\Inc\ST\STM32F10x-DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\updataparam.o --omf_browse ..\obj\updataparam.crf --depend ..\obj\updataparam.d)
 I (..\HARDWARE\Param\updataParam.h)(0x5796E2E6)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
 I (D:\Keil\ARM\ARMCC\include\stdint.h)(0x51C7C554)
@@ -499,7 +499,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x56F4AC4A)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x57105916)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\HARDWARE\LED\Led.h)(0x5790CA63)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\HARDWARE\ENCODE\encode.h)(0x5792F03F)
 I (..\HARDWARE\KEY\key.h)(0x578DF82E)
 I (..\HARDWARE\usart3\usart.h)(0x5795E4E5)
@@ -534,7 +534,7 @@ I (..\STM32F10x_FWLib\inc\stm32f10x_tim.h)(0x56F4AC4A)
 I (..\STM32F10x_FWLib\inc\stm32f10x_usart.h)(0x57105916)
 I (..\STM32F10x_FWLib\inc\misc.h)(0x4D783BB4)
 I (..\HARDWARE\LED\Led.h)(0x5790CA63)
-I (..\USER\main.h)(0x5796ECFC)
+I (..\USER\main.h)(0x5798A57C)
 I (..\SYSTEM\delay\delay.h)(0x56DE3091)
 I (..\HARDWARE\ENCODE\encode.h)(0x5792F03F)
 I (..\HARDWARE\KEY\key.h)(0x578DF82E)
